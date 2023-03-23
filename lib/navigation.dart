@@ -2,8 +2,6 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mercato_app/features/drugs/presentation/pages/drugs_pages/main_page.dart';
-import 'package:mercato_app/features/user/presentation/pages/login_page.dart';
-
 import 'features/drugs/presentation/pages/drugs_pages/barcode_page.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -29,9 +27,9 @@ class _NavigationPageState extends State<NavigationPage> {
       right: true,
       child: Scaffold(
 
-        bottomNavigationBar: CurvedNavigationBar(items: [
-          FaIcon(FontAwesomeIcons.magnifyingGlass,color: Colors.white),
-          FaIcon(FontAwesomeIcons.barcode,color: Colors.white,),
+        bottomNavigationBar:   CurvedNavigationBar( items: [
+           FaIcon(FontAwesomeIcons.magnifyingGlass,color: Colors.white),
+           FaIcon( FontAwesomeIcons.barcode,color: Colors.white,),
         ],
           key: navigationKey,
           index: activeIndex,

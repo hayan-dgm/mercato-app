@@ -6,6 +6,8 @@ import 'package:mercato_app/features/drugs/presentation/pages/drugs_pages/detail
 class DisplayPage extends StatefulWidget {
 
 
+
+
   final  List<Drug> drugs;
 
   const DisplayPage({super.key, required this.drugs,});
@@ -21,12 +23,8 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
 
-
 @override
   void initState() {
-  // BlocProvider.of<DrugsBloc>(context).add(
-  //     GetAllDrugsEvenet(query: "para"));
-  // drugsBloc =GetIt.I.get<DrugsBloc>();_____________
   displayList = List.from(widget.drugs);
     super.initState();
   }
@@ -35,6 +33,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   @override
   Widget build(BuildContext context) {
+    const baseUrl = "http://dev.mercato-me.com/assets/images/items/";
 
     return Padding(
         padding: const EdgeInsets.only(top:15,left: 15,right:15),
@@ -76,12 +75,12 @@ class _DisplayPageState extends State<DisplayPage> {
                                 : Icon(FontAwesomeIcons.circleXmark, color: Colors.red,),
                       leading: ClipRRect(borderRadius:BorderRadius.circular(10),
                         child: Image.network(fit: BoxFit.cover,width: 70,
-                        "http://dev.mercato-me.com/assets/images/items/${displayList[index].image}",
+                        baseUrl+displayList[index].image,
                         errorBuilder: (context, error, stackTrace) {
                           if(error is NetworkImageLoadException || error != null ){
                             return ClipRRect(borderRadius:BorderRadius.circular(10),child: Image.asset('assets/mercato_logo.png',fit: BoxFit.cover,width: 70,));
                           }else{
-                            return ClipRRect(borderRadius:BorderRadius.circular(10),child: Image.network("http://dev.mercato-me.com/assets/images/items/${displayList[index].image}",fit: BoxFit.cover,width: 70,));
+                            return ClipRRect(borderRadius:BorderRadius.circular(10),child: Image.network(baseUrl+displayList[index].image,fit: BoxFit.cover,width: 70,));
 
                         }
                         }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mercato_app/features/drugs/presentation/bloc/change/change_drugs_bloc.dart';
 import 'package:mercato_app/features/drugs/presentation/bloc/drugs/drugs_bloc.dart';
+import 'package:mercato_app/features/drugs/presentation/pages/drugs_pages/edit_image_page.dart';
 import 'package:mercato_app/navigation.dart';
 // import 'features/drugs/presentation/pages/drugs_pages/search_page.dart';
 import 'features/drugs/presentation/pages/drugs_pages/main_page.dart';
@@ -21,8 +23,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
       BlocProvider(create: (_)=> di.sl<DrugsBloc>()),
+      BlocProvider(create: (_)=> di.sl<ChangeDrugsBloc>()),
       BlocProvider(create: (context)=> LoginBloc( repo: UserRepositoryImpliment(), networkInfo: di.sl())),
       BlocProvider(create: (_)=> di.sl<DrugsBloc>()..add(GetAllDrugsEvent(query: ''))),
+      // BlocProvider(create: (_)=> di.sl<ChangeDrugsBloc>()..add(UpdateDrugEvent(image:di.sl()))),
 
 
     ],

@@ -8,6 +8,8 @@ import 'package:mercato_app/features/drugs/data/datasources/drug_remote_datasour
 import 'package:mercato_app/features/drugs/data/repositories/drug_repository_imp.dart';
 import 'package:mercato_app/features/drugs/domain/repositories/drugs_repository.dart';
 import 'package:mercato_app/features/drugs/domain/usecases/get_all_drugs.dart';
+import 'package:mercato_app/features/drugs/domain/usecases/update_drug.dart';
+import 'package:mercato_app/features/drugs/presentation/bloc/change/change_drugs_bloc.dart';
 import 'package:mercato_app/features/drugs/presentation/bloc/drugs/drugs_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,9 +21,11 @@ Future<void> init()async{
 
 //blocs
   sl.registerFactory(() => DrugsBloc(getAllDrugs: sl()));
+  sl.registerFactory(() => ChangeDrugsBloc(updateDrug: sl()));
 
   //usecases
   sl.registerLazySingleton(() => GetAllDrugsUseCase(sl()));
+  sl.registerLazySingleton(() => UpdateDrugUseCase( sl()));
 
   //repos
 

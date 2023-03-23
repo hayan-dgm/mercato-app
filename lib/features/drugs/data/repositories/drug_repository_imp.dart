@@ -6,8 +6,10 @@ import 'package:mercato_app/features/drugs/data/models/drug_model.dart';
 import 'package:mercato_app/features/drugs/domain/entities/drug.dart';
 import 'package:mercato_app/features/drugs/domain/repositories/drugs_repository.dart';
 
+import '../../domain/entities/image.dart';
 import '../datasources/drug_local_datasource.dart';
 import '../datasources/drug_remote_datasource.dart';
+import '../models/image_model.dart';
 
 
 typedef Future<Unit>UpdateDrugsMsg();
@@ -44,14 +46,18 @@ class DrugsRepositoryImpl implements DrugsRepository{
   }
 
   @override
-  Future<Either<Failure, Unit>> updateDrugs(Drug drug) async{
+  Future<Either<Failure, Unit>> updateDrugs(Images image) async{
   
-  final DrugModel drugModel = 
-  DrugModel(id: drug.id, name: drug.name, quantity: drug.quantity, image: drug.image, barcode: drug.barcode, active: drug.active, available: drug.available);
- 
-  return await _getMessage((){
+  final ImageModel imageModel = ImageModel(
+        id: image.id,
+        uri: image.uri,
+        name: image.name,
+        type: image.type,
+            );
 
-    return remoteDataSource.updateDrugs(drugModel);
+    return await _getMessage((){
+
+    return remoteDataSource.updateDrugs(imageModel);
   });
  
   }
